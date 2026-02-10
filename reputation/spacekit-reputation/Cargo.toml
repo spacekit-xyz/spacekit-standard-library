@@ -1,0 +1,20 @@
+[package]
+name = "spacekit-reputation"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+spacekit = { package = "spacekit-contract-sdk", git = "https://github.com/spacekit-xyz/spacekit-contract-sdk" }
+wee_alloc = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+lto = true
+
+[profile.dev]
+panic = "abort"

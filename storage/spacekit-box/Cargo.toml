@@ -1,0 +1,11 @@
+[package]
+name = "spacekit-box"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+spacekit-contract-sdk = { git = "https://github.com/spacekit-xyz/spacekit-contract-sdk" }
+wee_alloc = "0.4"
