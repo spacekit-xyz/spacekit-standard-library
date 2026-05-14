@@ -27,8 +27,8 @@ fn non_owner_cannot_register_agent() {
     identity.init("did:spacekit:owner".to_string());
 
     env::set_caller("did:spacekit:intruder");
-    let result = std::panic::catch_unwind(|| {
+    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         identity.register_agent("did:spacekit:agent".to_string(), profile("Agent 1"));
-    });
+    }));
     assert!(result.is_err());
 }

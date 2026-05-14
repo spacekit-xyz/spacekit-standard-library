@@ -1,10 +1,17 @@
 # Workspace for SpaceKit Standard Library contracts.
-# Each crate depends on spacekit-contract-sdk from https://github.com/spacekit-xyz/spacekit-contract-sdk
+# Most crates list `spacekit-contract-sdk` from git; when developing inside the monorepo,
+# `[patch]` below forces the sibling `../spacekit-contract-sdk` so new SDK symbols
+# (e.g. `ContractError::Unauthorized`, `NestedContractDepth`) match this repo.
 
 [workspace]
 members = [
   "access/astra-access-control",
   "agents/spacekit-agent",
+  "agents/spacekit-agent-microgpt",
+  "agents/spacekit-growformer-agent",
+  "agents/spacekit-growformer-sentiment-analysis",
+  "agents/spacekit-growformer-crypto-analysis",
+  "agents/spacekit-growformer-fintech-analysis",
   "agents/spacekit-agent-inference-market",
   "agents/spacekit-inference-mesh",
   "agents/spacekit-intent-classifier",
@@ -13,6 +20,7 @@ members = [
   "payments/astra-escrow",
   "payments/astra-payment-router",
   "payments/payable-demo",
+  "payments/spacekit-paymaster",
   "reputation/spacekit-reputation",
   "services/compression-service",
   "storage/spacekit-box",
@@ -21,4 +29,12 @@ members = [
   "tokens/sk-erc20",
   "tokens/sk-erc721",
   "tokens/sk-erc8004",
+  "system/spacekit-did-registry",
+  "system/spacekit-session-keys",
+  "system/spacekit-shared-vault",
+  "agents/routekit-agent",
+  "marketplace/astra-entitlement-ledger",
 ]
+
+[patch."https://github.com/spacekit-xyz/spacekit-contract-sdk"]
+spacekit-contract-sdk = { path = "../spacekit-contract-sdk" }

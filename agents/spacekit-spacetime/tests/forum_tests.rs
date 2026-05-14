@@ -15,9 +15,9 @@ fn create_thread_requires_agent() {
     with_agent_check(HashSet::new());
 
     env::set_caller("did:spacekit:alice");
-    let result = std::panic::catch_unwind(|| {
+    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         forum.create_thread("Hello".to_string(), "ref:1".to_string());
-    });
+    }));
     assert!(result.is_err());
 }
 
@@ -55,8 +55,8 @@ fn reply_rejects_parent_thread_mismatch() {
     let t2 = forum.create_thread("T2".to_string(), "ref:t2".to_string());
     let p1 = forum.reply(t1, None, "ref:p1".to_string());
 
-    let result = std::panic::catch_unwind(|| {
+    let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         forum.reply(t2, Some(p1), "ref:p2".to_string());
-    });
+    }));
     assert!(result.is_err());
 }

@@ -1,0 +1,22 @@
+[package]
+name = "spacekit-paymaster"
+version = "0.1.0"
+edition = "2021"
+description = "ERC-4337–inspired paymaster for sponsored agent execution on SpaceKit (complements x402)"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wee_alloc = "0.4.5"
+spacekit-contract-sdk = { git = "https://github.com/spacekit-xyz/spacekit-contract-sdk" }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

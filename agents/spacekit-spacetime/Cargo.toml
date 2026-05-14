@@ -4,8 +4,14 @@ version = "0.1.0"
 edition = "2021"
 description = "SpaceKit Spacetime contract - uses agentic LLM for intelligent on-chain operations"
 
+[features]
+default = ["test-helpers"]
+# For production WASM build use: cargo build --release --no-default-features
+test-helpers = []
+
 [lib]
-crate-type = ["cdylib"]
+name = "spacekit_spacetime"
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 spacekit = { package = "spacekit-contract-sdk", git = "https://github.com/spacekit-xyz/spacekit-contract-sdk" }

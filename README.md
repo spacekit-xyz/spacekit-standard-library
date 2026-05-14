@@ -19,24 +19,41 @@ Each contract in the Standard Library is:
 - compatible with the SpaceKit Contract Language (SKCL)  
 - ready for deployment in the SpaceKit Compute VM and SpaceKit‑JS VM  
 
-Modules include:
+Modules include (this list matches the workspace members in the root `Cargo.toml`):
+
+### Access control
+- **astra-access-control** — Access control primitives (`access/`)
 
 ### Tokens & Finance
-- **sk-erc20**, **sk-erc721**, **sk-erc1155**, **sk-erc8004** — Token standards
-- **astra-escrow**, **astra-payment-router** — Payments (`payments/`)
+- **sk-erc20**, **sk-erc721**, **sk-erc1155**, **sk-erc8004** — Token standards (`tokens/`)
+- **astra-escrow**, **astra-payment-router** — Escrow and payment routing (`payments/`)
+- **spacekit-paymaster** — ERC-4337–inspired paymaster for sponsored agent execution (`payments/`)
+- **payable-demo** — Payable / payment integration demo (`payments/`)
 - **spacekit-reputation** — Reputation primitive (`reputation/`)
 - **app-store** — App distribution & licensing (`app-store/`)
+
+### Marketplace
+- **astra-entitlement-ledger** — Entitlement / marketplace ledger (`marketplace/`)
 
 ### Storage & infra
 - **sk-storage-box** (spacekit-box) — Blob/store contract using `spacekit_storage` → `storage/`
 - **sk-video-tube** (spacekit-tube) — Video blob + metadata contract → `storage/`
 - **compression-service** — Compression utility → `services/`
 
+### System & identity
+- **spacekit-did-registry** — DID registry (`system/`)
+- **spacekit-session-keys** — Session keys for delegated agent execution (`system/`)
+- **spacekit-shared-vault** — Shared vault (`system/`)
+
 ### Agents & AI
 - **spacekit-agent** — Kit on-chain agent (CHAT, ANALYZE, SUMMARIZE, CODE_REVIEW, CLASSIFY, STATUS) → `agents/`
-- **spacekit-agent-inference-market**, **spacekit-inference-mesh** — Agent inference
-- **spacekit-intent-classifier** — Intent classification
-- **spacekit-spacetime** — Spacetime discussion forum
+- **spacekit-agent-microgpt** — Micro-GPT next-token agent (uses `microgpt_forward` host primitive; Rust + AssemblyScript) → `agents/spacekit-agent-microgpt`
+- **spacekit-growformer-agent** — Growformer brain on-chain agent (`agents/`)
+- **spacekit-growformer-sentiment-analysis**, **spacekit-growformer-crypto-analysis**, **spacekit-growformer-fintech-analysis** — Growformer-backed domain analysis agents (`agents/`)
+- **routekit-agent** — RouteKit agent (Growformer + web search + vault + messaging + remote storage) → `agents/routekit-agent`
+- **spacekit-agent-inference-market**, **spacekit-inference-mesh** — Agent inference (`agents/`)
+- **spacekit-intent-classifier** — Intent classification (`agents/`)
+- **spacekit-spacetime** — Spacetime discussion forum (`agents/`)
 
 ---
 
@@ -44,13 +61,15 @@ Modules include:
 
 ```
 spacekit-standard-library/
-  ├─ access/              # Access control (e.g. astra-access-control)
-  ├─ agents/              # AI agents & inference (spacekit-agent, inference-market, spacetime, …)
+  ├─ access/              # Access control (astra-access-control)
+  ├─ agents/              # AI agents, Growformer, RouteKit, inference, spacetime, …
   ├─ app-store/           # App distribution & licensing
-  ├─ payments/            # Escrow, payment router, payable demos
+  ├─ marketplace/         # Entitlements (astra-entitlement-ledger)
+  ├─ payments/            # Escrow, router, paymaster, payable demo
   ├─ reputation/          # Reputation (spacekit-reputation)
   ├─ services/            # Infra/utility (e.g. compression-service)
   ├─ storage/             # Storage primitives (spacekit-box, spacekit-tube)
+  ├─ system/              # DID registry, session keys, shared vault
   ├─ tokens/              # ERC-20, ERC-721, ERC-1155, ERC-8004
   └─ README.md
 ```

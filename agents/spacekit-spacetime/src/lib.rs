@@ -22,17 +22,15 @@ pub use identity::SpaceTimeIdentity;
 pub use forum::SpaceTimeForum;
 pub use moderation::SpaceTimeModeration;
 
-#[cfg(test)]
+#[cfg(any(test, feature = "test-helpers"))]
 extern crate std;
 
-#[cfg(test)]
+#[cfg(any(test, feature = "test-helpers"))]
 pub mod spacekit {
     pub mod prelude {
         use super::super::alloc;
         use alloc::collections::{BTreeMap, BTreeSet};
         use alloc::string::String;
-        use alloc::vec::Vec;
-        use std::sync::Mutex;
 
         pub type Did = String;
         pub type Address = String;
@@ -41,6 +39,8 @@ pub mod spacekit {
 
         pub mod env {
             use super::{Address, Did};
+            use alloc::string::{String, ToString};
+            use std::boxed::Box;
             use std::sync::Mutex;
 
             static CALLER: Mutex<Did> = Mutex::new(String::new());
@@ -81,7 +81,6 @@ pub mod spacekit {
             }
         }
 
-        pub use env;
         pub use alloc::string::String as string;
         pub use alloc::vec::Vec as vec;
         pub use alloc::collections::{BTreeMap as MapImpl, BTreeSet as SetImpl};

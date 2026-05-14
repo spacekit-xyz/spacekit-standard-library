@@ -1,0 +1,22 @@
+[package]
+name = "spacekit-session-keys"
+version = "0.1.0"
+edition = "2021"
+description = "ERC-4337–inspired session-key management for delegated agent execution on SpaceKit"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wee_alloc = "0.4.5"
+spacekit-contract-sdk = { git = "https://github.com/spacekit-xyz/spacekit-contract-sdk" }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
