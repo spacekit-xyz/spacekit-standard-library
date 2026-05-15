@@ -21,6 +21,8 @@ Each contract in the Standard Library is:
 
 Modules include (this list matches the workspace members in the root `Cargo.toml`):
 
+Wire-format helpers for `handle` arguments and responses live in the sibling **[`spacekit-contract-sdk`](https://github.com/spacekit-xyz/spacekit-contract-sdk)** crate (`spacekit_contract_sdk::wire`) so any contract that already depends on the SDK can import them without an extra crate.
+
 ### Access control
 - **astra-access-control** — Access control primitives (`access/`)
 
@@ -74,7 +76,7 @@ spacekit-standard-library/
   └─ README.md
 ```
 
-Each directory contains one or more standalone contract crates with their own `Cargo.toml`, source code, and tests.
+Each top-level directory contains one or more standalone contract crates with their own `Cargo.toml`, source code, and tests.
 
 ---
 
