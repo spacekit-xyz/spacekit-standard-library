@@ -49,6 +49,14 @@ name = "compression-service-contract"
 version = "0.1.0"
 
 [[package]]
+name = "hello-world"
+version = "0.1.0"
+dependencies = [
+ "spacekit-contract-sdk",
+ "wee_alloc",
+]
+
+[[package]]
 name = "libc"
 version = "0.2.181"
 source = "registry+https://github.com/rust-lang/crates.io-index"

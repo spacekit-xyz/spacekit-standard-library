@@ -33,7 +33,8 @@ members = [
   "system/spacekit-session-keys",
   "system/spacekit-shared-vault",
   "agents/routekit-agent",
-  "marketplace/astra-entitlement-ledger",
+  "marketplace/astra-entitlement-ledger", 
+  "hello-world",
 ]
 
 [patch."https://github.com/spacekit-xyz/spacekit-contract-sdk"]
