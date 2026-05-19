@@ -5,10 +5,11 @@
 //!
 //! # Examples
 //!
-//! ```rust
-//! let result = handle(b"World");
+//! let mut input = Vec::new();
+//! input.extend_from_slice(&5u16.to_le_bytes()); // length prefix
+//! input.extend_from_slice(b"World");
+//! let result = handle(&input).unwrap();
 //! assert_eq!(result, b"Hello, World!");
-//! ```
 
 #![no_std]
 
